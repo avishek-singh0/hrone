@@ -11,7 +11,7 @@ router = APIRouter()
 async def create_product(product: ProductCreate):
     product_dict = product.dict()
     result = await db.products.insert_one(product_dict)
-    return {"message": "Product created successfully", "id": str(result.inserted_id)}
+    return { "id": str(result.inserted_id)}
 
 @router.get("", response_model=List[ProductOut])
 async def list_products(name: Optional[str] = None, size: Optional[str] = None,
